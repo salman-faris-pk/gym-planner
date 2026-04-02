@@ -8,9 +8,6 @@ import UserButton from "../UserButton";
 const Navbar = () => {
   const { user, loading } = useAuth();
 
-  console.log(user);
-  
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md ">
       <div className="max-w-6xl mx-auto px-6 h-16 text-foreground flex items-center justify-between">
@@ -24,20 +21,23 @@ const Navbar = () => {
             <Skeleton className="h-8 w-24 rounded-md" />
           ) : user ? (
             <Link to="/profile" className="flex">
-              <Button variant="ghost" size="sm">
+              <Button
+                size="sm"
+                className="hover:bg-accent-hover hover:text-black/90"
+              >
                 My Plan
               </Button>
-              <UserButton user={user}/>
+              <UserButton user={user} />
             </Link>
           ) : (
             <>
               <Link to="/auth/sign-in">
-                <Button size="sm" variant="ghost">
+                <Button size="sm" className="hover:bg-accent-hover hover:text-black">
                   Sign In
                 </Button>
               </Link>
               <Link to="/auth/sign-up">
-                <Button size="sm" variant="ghost">
+                <Button size="sm" className="hover:bg-accent-hover hover:text-black">
                   Sign Up
                 </Button>
               </Link>
