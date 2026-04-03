@@ -14,10 +14,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import type { UserProfile } from "@/types";
 
 
 export default function Onboarding() {
-  const { user } = useAuth();
+  const { user,saveProfile } = useAuth();
   const [formData, setFormData] = useState({
     goal: "bulk",
     experience: "intermediate",
@@ -35,6 +36,17 @@ export default function Onboarding() {
   async function hanldeQuestionaire(e: React.SubmitEvent){
       e.preventDefault();
 
+      const profile: Omit<UserProfile, "userId" | "updatedAt"> = {
+        goal: formData.goal as UserProfile['goal'],
+        experience: formData.experience as UserProfile['experience'],
+        daysPerWeek: parseInt(formData.daysPerWeek),
+        sessionLength: parseInt(formData.sessionLength),
+        equipment: formData.equipment as UserProfile['equipment'],
+        injuries: formData.injuries || undefined,
+        prefferedSplit: formData.prefferedSplit as UserProfile['prefferedSplit']
+      }
+
+      saveProfile(profile)
       
   }
 
@@ -109,7 +121,7 @@ export default function Onboarding() {
                  />
 
                  <div className="flex gap-3 pt-2">
-                    <Button type="submit" className="flex-1 gap-2">
+                    <Button type="submit" className="flex-1 gap-2 bg-accent text-black/80 hover:text-black cursor-pointer">
                           Generate My Plan <ArrowRight className="w-4 h-4"/>
                     </Button>
                  </div>

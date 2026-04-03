@@ -13,6 +13,7 @@ export const goalOptions = [
   { value: "rehab", label: "Injury Recovery / Rehab" },
   { value: "general_fitness", label: "Stay Fit & Healthy" }
 ];
+export type Goal = typeof goalOptions[number]["value"];
 
 export const experienceOptions = [
   { value: "beginner", label: "Beginner (0-6 months)" },
@@ -20,7 +21,10 @@ export const experienceOptions = [
   { value: "intermediate", label: "Intermediate (1-3 years)" },
   { value: "advanced", label: "Advanced (3+ years)" },
   { value: "athlete", label: "Athlete / Professional" }
-];
+] ;
+
+export type Experience = typeof experienceOptions[number]["value"];
+
 
 export const daysOptions = [
   { value: "2", label: "2 Days / Week" },
@@ -46,7 +50,9 @@ export const equipmentOptions = [
   { value: "kettlebell", label: "Kettlebell" },
   { value: "full_gym", label: "Full Gym Access" },
   { value: "home", label: "Home Workout" },
-];
+] as const;
+
+export type Equipment = typeof equipmentOptions[number]["value"];
 
 export const splitOptions = [
   { value: "full_body", label: "Full Body (All muscles each session)" },
@@ -61,3 +67,5 @@ export const splitOptions = [
   { value: "hybrid", label: "Hybrid (Strength + Cardio)" },
   { value: "custom",label: "Let AI Decide"}
 ];
+
+export type Split = typeof splitOptions[number]["value"];
