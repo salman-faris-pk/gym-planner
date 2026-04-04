@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import { api } from "@/lib/api";
 import { authClient } from "@/lib/auth";
 import type { User, UserProfile } from "@/types"
@@ -15,9 +14,9 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 
 export default function AuthProvider({ children }:{children: ReactNode}){
-
     const [neonUser,setNeonUser]=useState<any>(null);
     const [loading, setLoading] = useState(true);
+   
 
     useEffect(()=>{
        async function laodUser(){
@@ -42,8 +41,9 @@ export default function AuthProvider({ children }:{children: ReactNode}){
         if(!neonUser){
             throw new Error('User must be authenticated to save profile')
         };
-
-        await api.saveProfile(neonUser.id, profileData)
+        
+        await api.saveProfile(neonUser.id, profileData);
+         
     };
 
    return <AuthContext.Provider value={{user: neonUser,loading, saveProfile}}>
