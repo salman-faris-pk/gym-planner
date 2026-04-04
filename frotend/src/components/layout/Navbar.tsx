@@ -15,7 +15,6 @@ const Navbar = () => {
           <Dumbbell className="w-6 h-6 text-accent" />
           <span className="font-semibold text-lg">GymAI</span>
         </Link>
-
         <nav>
           {loading ? (
             <Skeleton className="h-8 w-24 rounded-md" />

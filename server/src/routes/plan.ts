@@ -4,7 +4,7 @@ import { generateTrainingPlan } from "../lib/ai";
 
 export const planRouter = Router();
 
-planRouter.post("/generate-plan", async(req:Request,res: Response)=> {
+planRouter.post("/generate", async(req:Request,res: Response)=> {
   try {
     const { userId }=req.body;
     if (!userId) {

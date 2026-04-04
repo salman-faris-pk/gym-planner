@@ -23,6 +23,14 @@ type UserProps = {
 
 const UserButton = ({ user }: UserProps) => {
   const navigate = useNavigate();
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(part => part[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,7 +38,7 @@ const UserButton = ({ user }: UserProps) => {
           <Avatar className="h-7 w-7">
             <AvatarImage src={user.image} />
             <AvatarFallback>
-              {user.name?.charAt(0).concat(user.name.charAt(1))}
+              {getInitials(user.name)}
             </AvatarFallback>
           </Avatar>
 
@@ -40,7 +48,7 @@ const UserButton = ({ user }: UserProps) => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="center" className="w-56 mt-4">
+      <DropdownMenuContent align="end" sideOffset={8} className="w-52 mt-4">
         <DropdownMenuLabel className="bg-gray-700 rounded-sm">My Account</DropdownMenuLabel>
 
         <DropdownMenuSeparator />

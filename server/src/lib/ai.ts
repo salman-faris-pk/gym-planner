@@ -31,7 +31,7 @@ export async function generateTrainingPlan(
 
   try {
     const response = await gemini.models.generateContent({
-        model: "gemini-2.0-flash",  //gemini-2.5-flash
+        model: "gemini-2.5-flash",  //gemini-2.0-flash
         contents: prompt,
         config: {
             systemInstruction: "you are an expert fitness trainer and program designer, you must respond with valid JSON only, don't include any markdown, reasoning or addition texts",

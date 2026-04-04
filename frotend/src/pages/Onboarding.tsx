@@ -21,10 +21,12 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader2 } from "lucide-react";
 import type { UserProfile } from "@/types";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Onboarding() {
-  const { user, saveProfile } = useAuth();
+  const { user, saveProfile, generatePlan } = useAuth();
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     goal: "bulk",
     experience: "intermediate",
@@ -55,8 +57,11 @@ export default function Onboarding() {
     };
 
     try {
-      saveProfile(profile);
+      await saveProfile(profile);
       setIsGenerating(true);
+      await generatePlan();
+      navigate("/profile")
+
     } catch (err) {
       setErorr(err instanceof Error ? err.message : "Failed to fetch profile");
     } finally {

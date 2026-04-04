@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 export default function Profile(){
     const {user,loading}=useAuth()
-    const plan=false;
+    const plan=true;
     
         if(!user && !loading){
             return <Navigate to={"/auth/sign-in"} replace/>
@@ -16,7 +16,7 @@ export default function Profile(){
 
     return (
         <div>
-            hello Profile page
+            heyllo! from Profile page
         </div>
     )
 }

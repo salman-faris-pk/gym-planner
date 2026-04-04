@@ -26,8 +26,11 @@ async function post(path: string, body: object){
 
 
 export const api = {
-   saveProfile: (userId: string, profile: Omit<UserProfile, 'userId' | 'updatedAt'>) => {
-     post("/profile", {userId, ...profile})
+   SaveProfile: (userId: string, profile: Omit<UserProfile, 'userId' | 'updatedAt'>) => {
+      return post("/profile", {userId, ...profile})
    },
+   GeneratePlan: (userId:string) =>{
+     return post("/plan/generate", { userId})
+   }
 
 }
