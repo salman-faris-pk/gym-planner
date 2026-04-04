@@ -1,5 +1,6 @@
 import { Router, type Request,type Response} from "express"
 import { prisma } from "../lib/prisma";
+import { generateTrainingPlan } from "../lib/ai";
 
 export const planRouter = Router();
 
@@ -27,7 +28,17 @@ planRouter.post("/generate-plan", async(req:Request,res: Response)=> {
      const nextVersion = latestplan ? latestplan.version + 1 : 1;
      let planJson;
      
-
+     try {
+      
+      planJson= await generateTrainingPlan(profile);
+      
+     } catch (err) {
+      console.error("AI genearte failed",err)
+      return res.status(500).json({
+        error: "Failed to generate training plan,Please try again.",
+        details: err instanceof Error ? err.message : "Unknown error"
+      })
+     }
 
      const planText= JSON.stringify(planJson, null, 2);
 
